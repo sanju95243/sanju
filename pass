@@ -1,0 +1,14 @@
+username=("sanju","kml","rmn",)
+password=("sanjna009", "chahal99", "abcc7")
+x=input("enter username: ")
+y=input("enter password: ")
+login=False
+for i in range(0,3):
+    if x==username[i] and y==password[i]:
+        login=True
+
+if login:
+    print("login successfully")
+else:
+    print("please enter correct password")
+
