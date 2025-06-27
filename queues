@@ -1,0 +1,11 @@
+#queues in python
+l=[]
+l.append("apple")
+l.append("mango")
+l.append("litchi")
+l.append("banana")
+print("all customers")
+print(l)
+first=l.pop(0)
+print(l)
+
