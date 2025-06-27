@@ -1,0 +1,9 @@
+#stack in python
+l=[]
+l.append("apple")
+print(l)
+l.append("litchi")
+print(l)
+last=l.pop()
+print(l[len(l)-1])
+print(l)
