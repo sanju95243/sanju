@@ -1,0 +1,127 @@
+//parent or super class
+
+import java.util.ArrayList;
+
+abstract class Employee {
+    private String name;
+    private int id;
+
+    // constructor
+    public Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+    // getter & setter method
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+// abstract
+    public abstract double calculateSalary();
+// override
+    @Override
+    public String toString() {
+        return "Employee[name=" + name + ",id =" + id + ", salary =" + calculateSalary() +"]";
+    }
+}
+
+// 2nd class is for fte
+class FullTimeEmployee extends Employee {
+    private double monthlysalary;
+
+    // constructor
+    public FullTimeEmployee(String name, int id, double monthlysalary) {
+        super(name, id);
+        this.monthlysalary = monthlysalary;
+    }
+
+    // override
+    @Override
+    public double calculateSalary(){
+        return monthlysalary;
+    }
+}
+
+// 3rd class for pte
+class PartTimeEmployee extends Employee {
+    private int hoursworked;
+    private int hourlyrate;
+
+    // constructor
+    public PartTimeEmployee(String name, int id, int hoursworked, int hourlyrate) {
+        super(name, id);
+        this.hoursworked = hoursworked;
+        this.hourlyrate = hourlyrate;
+    }
+
+    // override
+    @Override
+    public double calculateSalary() {
+        return hoursworked * hourlyrate;
+    }
+}
+
+// 4th and last important class for salary sys
+class PayrollSystem {
+    private ArrayList<Employee> employeeList;
+//constructor    
+    public PayrollSystem(){
+        employeeList = new ArrayList<>();
+    }
+
+    // method for add employee
+    public void addEmployee(Employee employee) {
+        employeeList.add(employee);
+    }
+
+    // method for remove employee
+    public void removeEmployee(int id) {
+        Employee employeeToRemove = null;
+        // for each
+        for (Employee employee : employeeList) {
+            if (employee.getId() == id) {
+                employeeToRemove = employee;
+                break;
+            }
+        }
+        if (employeeToRemove != null) {
+            employeeList.remove(employeeToRemove);
+        }
+    }
+
+    // dislay method
+    public void displayEmployee(){
+//for each        
+        for(Employee employee : employeeList){
+//print all the employees            
+            System.out.println(employee);
+        }
+    }
+}
+
+// main class to access all these things
+public class Main {
+    public static void main(String[] args) {
+        PayrollSystem payrollSystem = new PayrollSystem();
+            FullTimeEmployee emp1 = new FullTimeEmployee("akash", 1, 90000);
+            PartTimeEmployee emp2 = new PartTimeEmployee("rmn", 2, 5, 100);
+            PartTimeEmployee emp3 = new PartTimeEmployee("rohan", 3, 2, 100);
+        
+//add employees            
+            payrollSystem.addEmployee(emp1);
+            payrollSystem.addEmployee(emp2);
+            payrollSystem.addEmployee(emp3);
+            System.out.println("initial employees details:");
+            payrollSystem.displayEmployee();
+            System.out.println("removing of employees");
+            payrollSystem.removeEmployee(3);
+            System.out.println("remaining employees in my company after remove");
+            payrollSystem.displayEmployee();
+
+        
+    }
+}
